@@ -6,6 +6,7 @@ using TradeFlowAPI.DataAccess.Concrete.EntityFramework;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//AOP Autofac mimarisi
 builder.Services.AddSingleton<IProductService, ProductManager>();
 builder.Services.AddSingleton<IProductDal, EfProductDal>();
 builder.Services.AddControllers();
