@@ -59,6 +59,9 @@ Bu belge, projemizde kullanılan veri modelinin yapısını ve tablolar arasınd
 ## Kullanım
 
 Yukarıda belirtilen sırayı takip ederek tablolarınızı doldurduğunuzda, veri ilişkilerini doğru bir şekilde yönetebilir ve sisteminizin işleyişini optimize edebilirsiniz.
+
+
+
 # Project Database Structure
 
 This document explains the structure of the data model used in our project and the relationships between the tables. The order of the tables below indicates the sequence in which they should be populated.
@@ -74,7 +77,7 @@ This document explains the structure of the data model used in our project and t
 | Email          |          | City           |          | ParentCategoryId|
 | Password       |          | State          |          | (FK)           |
 | Role           |          | ZipCode        |          |                |
-|                |          | UserId (FK)   | <--------> |               |
+|                |          | UserId (FK)    | <------> |                |
 +----------------+          +----------------+          +----------------+
          |                                                       |
          |                                                       |
@@ -87,7 +90,7 @@ This document explains the structure of the data model used in our project and t
 | UserId (FK)    | <------> | OrderId (FK)   |          | Name           |
 | TotalPrice     |          | ProductId (FK) |          | Description    |
 | Status         |          | Quantity       |          | Price          |
-| ShippingAddressId (FK)   | Price          |          | Stock          |
+| ShippingAddressId (FK)    | Price          |           | Stock          |
 +----------------+          +----------------+          | CategoryId (FK)|
          |                                               +----------------+
          |                                                         |
@@ -96,7 +99,7 @@ This document explains the structure of the data model used in our project and t
 |    Shipping    |          |     Payment    |          |     Coupon     |
 +----------------+          +----------------+          +----------------+
 | Id (PK)        |          | Id (PK)        |          | Id (PK)        |
-| TrackingNumber  |          | Amount         |          | Code           |
+| TrackingNumber |          | Amount         |         | Code           |
 | ShippedDate    |          | PaymentMethod  |          | DiscountAmount |
 | ShippingMethod |          | PaymentDate    |          | ExpirationDate |
 | OrderId (FK)   | <------> | OrderId (FK)   |          | OrderId (FK)   |
@@ -122,3 +125,66 @@ This document explains the structure of the data model used in our project and t
 | ImageUrl       |                                          |
 | ProductId (FK) | <-------------------------------------+
 +----------------+
+
+
+# Project Database Structure
+
+This document explains the structure of the data model used in our project and the relationships between tables. The order of the tables listed below indicates the sequence in which they should be populated.
+
+## Tables and Relationships
+
+1. **User**
+   - Represents users and is related to many other entities.
+   - **Note**: This table should be populated first as other tables reference it.
+
+2. **Address**
+   - Depends on the `User` table.
+   - **Note**: You can add address details after users have been added.
+
+3. **Category**
+   - Represents product categories.
+   - **Note**: It’s helpful to populate this table initially to link categories when adding products.
+
+4. **Product**
+   - Contains product information.
+   - **Note**: Since products are categorized, populate the `Category` table before filling in this table.
+
+5. **Order**
+   - Represents orders.
+   - **Note**: As orders depend on users and addresses, populate the `User` and `Address` tables first.
+
+6. **OrderItem**
+   - Represents items in an order.
+   - **Note**: Populate the `Order` and `Product` tables before adding items to this table.
+
+7. **Payment**
+   - Represents payments.
+   - **Note**: As it depends on the `Order` table, populate the orders first.
+
+8. **Shipping**
+   - Contains shipping information.
+   - **Note**: This table should be filled in after the orders are created.
+
+9. **Coupon**
+   - Represents discount coupons, related to orders.
+   - **Note**: You must populate the `Order` table first.
+
+10. **Discount**
+    - Represents discounts applied to products.
+    - **Note**: Populate the `Product` table before adding entries to this table.
+
+11. **Review**
+    - Contains product reviews.
+    - **Note**: Since it depends on users and products, populate the `User` and `Product` tables first.
+
+12. **ProductImage**
+    - Represents product images.
+    - **Note**: Populate the `Product` table first.
+
+13. **Refund**
+    - Represents refunds.
+    - **Note**: As it depends on the `Payment` table, populate payments first.
+
+## Usage
+
+By following the order listed above to populate your tables, you can manage data relationships properly and optimize the functioning of your system.
