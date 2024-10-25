@@ -59,4 +59,66 @@ Bu belge, projemizde kullanılan veri modelinin yapısını ve tablolar arasınd
 ## Kullanım
 
 Yukarıda belirtilen sırayı takip ederek tablolarınızı doldurduğunuzda, veri ilişkilerini doğru bir şekilde yönetebilir ve sisteminizin işleyişini optimize edebilirsiniz.
+# Project Database Structure
 
+This document explains the structure of the data model used in our project and the relationships between the tables. The order of the tables below indicates the sequence in which they should be populated.
+
+## Tables and Their Relationships
+
+```plaintext
++----------------+          +----------------+          +----------------+
+|      User      |          |     Address    |          |    Category    |
++----------------+          +----------------+          +----------------+
+| Id (PK)        | <------> | Id (PK)        |          | Id (PK)        |
+| Name           |          | Street         |          | Name           |
+| Email          |          | City           |          | ParentCategoryId|
+| Password       |          | State          |          | (FK)           |
+| Role           |          | ZipCode        |          |                |
+|                |          | UserId (FK)   | <--------> |               |
++----------------+          +----------------+          +----------------+
+         |                                                       |
+         |                                                       |
+         |                                                       |
+         |                                                       |
++----------------+          +----------------+          +----------------+
+|     Order      | <------> |   OrderItem    | <------> |     Product    |
++----------------+          +----------------+          +----------------+
+| Id (PK)        |          | Id (PK)        |          | Id (PK)        |
+| UserId (FK)    | <------> | OrderId (FK)   |          | Name           |
+| TotalPrice     |          | ProductId (FK) |          | Description    |
+| Status         |          | Quantity       |          | Price          |
+| ShippingAddressId (FK)   | Price          |          | Stock          |
++----------------+          +----------------+          | CategoryId (FK)|
+         |                                               +----------------+
+         |                                                         |
+         |                                                         |
++----------------+          +----------------+          +----------------+
+|    Shipping    |          |     Payment    |          |     Coupon     |
++----------------+          +----------------+          +----------------+
+| Id (PK)        |          | Id (PK)        |          | Id (PK)        |
+| TrackingNumber  |          | Amount         |          | Code           |
+| ShippedDate    |          | PaymentMethod  |          | DiscountAmount |
+| ShippingMethod |          | PaymentDate    |          | ExpirationDate |
+| OrderId (FK)   | <------> | OrderId (FK)   |          | OrderId (FK)   |
++----------------+          +----------------+          +----------------+
+                                                            |
+                                                            |
+                                                            |
++----------------+          +----------------+          +----------------+
+|     Discount    |          |    Review      |          |    Refund      |
++----------------+          +----------------+          +----------------+
+| Id (PK)        |          | Id (PK)        |          | Id (PK)        |
+| DiscountRate   |          | Comment        |          | RefundAmount   |
+| StartDate      |          | Rating         |          | RefundDate     |
+| EndDate        |          | UserId (FK)    |          | PaymentId (FK) |
+| ProductId (FK) | <------> | ProductId (FK) |          |                |
++----------------+          +----------------+          +----------------+
+                                                            |
+                                                            |
++----------------+                                          |
+|  ProductImage  |                                          |
++----------------+                                          |
+| Id (PK)        |                                          |
+| ImageUrl       |                                          |
+| ProductId (FK) | <-------------------------------------+
++----------------+
