@@ -19,6 +19,38 @@ namespace TradeFlowWebAPI.Controllers
             _productService = productService;
         }
 
+
+        [HttpPost]
+        public IActionResult Add(Product product)
+        {
+            var result = _productService.Add(product);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+            var result = _productService.Delete(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPut]
+        public IActionResult Put(Product product)
+        {
+            var result = _productService.Update(product);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("productDetails")]
         public IActionResult GetProductDetails()
         {
@@ -32,8 +64,8 @@ namespace TradeFlowWebAPI.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult GetProducts()
+        [HttpGet("getAllProduct")]
+        public IActionResult GetAllProducts()
         {
             var result = _productService.GetAll();
             if (result.Success)
@@ -42,15 +74,38 @@ namespace TradeFlowWebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost]
-        public IActionResult Post(Product product)
+
+        [HttpGet("getCategoryById")]
+        public IActionResult GetCategoryById(Guid id)
         {
-            var result = _productService.Add(product);
+            var result = _productService.GetByCategoryId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+            }
+
+        [HttpGet("getUnitPrice")]
+        public IActionResult GetByUnitPrice(decimal price,decimal max)
+        {
+            var result = _productService.GetByUnitPrice(price,max);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
+        [HttpGet("getProductById")]
+        public IActionResult GetById(Guid id)
+        {
+            var result = _productService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }

@@ -12,12 +12,15 @@ namespace TradeFlowAPI.Business.Abstract
     public interface IProductService
     {
         IDataResult<List<Product>> GetAll();
-        IDataResult<List<Product>> GeByCategoryId(Guid id);
+        IDataResult<List<Product>> GetByCategoryId(Guid id);
         IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max);
         IDataResult<List<ProductDetailDto>> GetProductDetails();
 
         IDataResult<Product> GetById(Guid id);
         IResult Add(Product product);
+        IResult Update(Product product);
+        IResult Delete(Guid id);
+
        
 
     }
