@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using TradeFlowAPI.Entities.Enums;
 
 
 namespace TradeFlowAPI.Entities.Concrete
@@ -15,11 +16,11 @@ namespace TradeFlowAPI.Entities.Concrete
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; }
+        public RoleType Role { get; set; }
 
-        public ICollection<Adress> Addresses { get; set; }
-        public ICollection<Order> Orders { get; set; }
-        public ICollection<Review> Reviews { get; set; }
+        public ICollection<Adress>? Addresses { get; set; }
+        public ICollection<Order>? Orders { get; set; }
+        public ICollection<Review>? Reviews { get; set; }
     }
 
 

@@ -37,7 +37,7 @@ namespace TradeFlowAPI.Business.Concrete
                 return new ErrorDataResult<List<Product>>("Hata!");
             }
            */
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),"Product added!");
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),"Product listed");
         }
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
