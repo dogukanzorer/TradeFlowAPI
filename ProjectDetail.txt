@@ -1,0 +1,48 @@
+﻿        User Tablo ekleme
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "securePassword123",
+  "role": 1  // User rolü için
+}
+Enum Değerleri:
+0: Admin
+1: User
+2: Guest
+3: Customer
+
+                  Product Tablo Ekleme 
+{
+    "name": "Sample Product",
+    "description": "This is a sample product.",
+    "price": 19.99,
+    "stock": 100,
+    "categoryId": "3fa85f64-5717-4562-b3fc-2c963f66afa6" // Gerekirse bir kategori ID'si ekleyin
+}
+
+
+
+
+Category Tablosu için ekleme yapmak Önce ana Kategory eklemek için 
+{
+  "name": "Ev Eşyaları",
+  "parentCategoryId": null
+}
+
+ParentCategoryId'yi Boş bırakmalısın bu ana category olarak kabul edilir
+
+Ve diyelim category olarak Ev Eşyalarını ekledin ama bunu şöylede ayırmak istiyorsun Kitchen , Bathroom'diye o zaman o CategoryId'yi parentCategoryId'ye verip yazman lazım
+
+Ev Eşyaları = b7c96c07-a6e1-4498-9559-c90910cc8cd1
+
+{
+  "name": "Kitchen",
+  "parentCategoryId": "b7c96c07-a6e1-4498-9559-c90910cc8cd1"
+}
+Güncelleme işlemi için 
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Güncellenecek kategori id'si
+  "name": "Updated Kitchen", // Yeni kategori adı
+  "parentCategoryId": null // Üst kategori (varsa, yoksa null bırakabilirsiniz)
+}
+

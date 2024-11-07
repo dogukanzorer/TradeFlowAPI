@@ -13,6 +13,8 @@ builder.Services.AddSingleton<ICategoryDal, EfCategoryDal>();
 builder.Services.AddSingleton<ICategoryService, CategoryManager>();
 builder.Services.AddSingleton<IUserService, UserManager>();
 builder.Services.AddSingleton<IUserDal, EfUserDal>();
+builder.Services.AddSingleton<IAdressService, AdressManager>();
+builder.Services.AddSingleton<IAdressDal, EfAdressDal>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
